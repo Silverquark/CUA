@@ -1,10 +1,5 @@
-import { withClerkMiddleware } from '@clerk/nextjs/server'
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
-
-export default withClerkMiddleware((_req: NextRequest) => {
-  return NextResponse.next()
-})
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
 // Stop Middleware running on static files
 export const config = {
@@ -17,6 +12,6 @@ export const config = {
      *
      * This includes images, and requests from TRPC.
      */
-    '/(.*?trpc.*?|(?!static|.*\\..*|_next|favicon.ico).*)',
+    "/(.*?trpc.*?|(?!static|.*\\..*|_next|favicon.ico).*)",
   ],
-}
+};

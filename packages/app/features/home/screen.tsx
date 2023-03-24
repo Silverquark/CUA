@@ -7,119 +7,146 @@ import {
   Separator,
   XStack,
   YStack,
+  Switch,
   Image,
+  H5,
 } from "@my/ui";
 import React, { useEffect } from "react";
 import { useLink } from "solito/link";
-import { trpc } from "../../utils/trpc";
-import { SignedIn, SignedOut, useAuth } from "../../utils/clerk";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
+
+type deviceInfo = {
+  manufacturer: string;
+  modelName: string;
+  modelDetails: {
+    supportedAttachments: ["dustbin"];
+  };
+  implementation: string;
+};
+
+const fetchUsers = async () => {
+  const res = await fetch("http://192.168.178.28/api/v2/robot");
+  return (await res.json()) as deviceInfo;
+};
+
+const fetchManualState = async () => {
+  const res = await fetch(
+    "http://192.168.178.28/api/v2/robot/capabilities/ManualControlCapability"
+  );
+  return (await res.json()).enabled as boolean;
+};
+
+const setManualMode = async (enable: boolean) => {
+  return await axios.put(
+    "http://192.168.178.28/api/v2/robot/capabilities/ManualControlCapability",
+    {
+      action: enable ? "enable" : "disable",
+    }
+  );
+};
+
+const move = async (
+  action:
+    | "forward"
+    | "backward"
+    | "rotate_counterclockwise"
+    | "rotate_clockwise"
+) => {
+  return await axios.put(
+    "http://192.168.178.28/api/v2/robot/capabilities/ManualControlCapability",
+    {
+      action: "move",
+      movementCommand: action,
+    }
+  );
+};
 
 export function HomeScreen() {
-  const { signOut, userId } = useAuth();
-  const userLinkProps = useLink({
-    href: "/user/nate",
-  });
-  const signInLinkProps = useLink({
-    href: "/signin",
-  });
-  const signUpLinkProps = useLink({
-    href: "/signup",
+  const queryClient = useQueryClient();
+
+  const { data, error } = useQuery(["info"], fetchUsers);
+
+  const { data: manualState, error: error2 } = useQuery(
+    ["manualState"],
+    fetchManualState
+  );
+
+  const { mutate: mutateManualState } = useMutation({
+    mutationFn: setManualMode,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["manualState"] });
+    },
   });
 
-  const { data, isLoading, error } = trpc.entry.all.useQuery();
+  const { mutate: mutateMove } = useMutation({
+    mutationFn: move,
+  });
 
-  useEffect(() => {
-    console.log(data);
-  }, [isLoading]);
   /* 
   if (isLoading) {
     return <Paragraph>Loading...</Paragraph>
   } */
 
   if (error) {
-    return <Paragraph>{error.message}</Paragraph>;
+    return <Paragraph>{error}</Paragraph>;
+  }
+  if (!data) {
+    return <Paragraph>Help there is no data</Paragraph>;
   }
 
   return (
     <YStack f={1} jc="center" ai="center" p="$4" space>
-      <YStack space="$4" maw={600} px="$3">
-        <XStack jc="center" ai="flex-end" fw="wrap" space="$2" mt="$-2">
-          <Image
-            src="https://raw.githubusercontent.com/chen-rn/CUA/main/apps/nextjs/public/favicon.ico"
-            accessibilityLabel="create-universal-app logo"
-            width={50}
-            height={50}
-            mt="$2"
-          />
-          <H1 ta="center" mt="$2">
-            create-universal-app
-          </H1>
-        </XStack>
-        <Paragraph ta="center">
-          This is a demo for create-universal-app. To read more about the
-          philosophy behind it, visit{" "}
-          <Anchor
-            color="$color12"
-            href="https://github.com/chen-rn/create-universal-app"
-            target="_blank"
-          >
-            https://github.com/chen-rn/create-universal-app
-          </Anchor>{" "}
-          (give it a ⭐️ if you like it!)
-        </Paragraph>
-        <Paragraph ta="center">
-          This template uses Expo, Next, Solito, tRPC, Tamagui, Clerk, and
-          Prisma. If you're a beginner and is a little overwhelmed, I've also
-          made a{" "}
-          <Anchor
-            color="$color12"
-            href="https://youtu.be/aTEv0-ZBbWk"
-            target="_blank"
-          >
-            video
-          </Anchor>{" "}
-          explanation on how this template works and how to get started!
-        </Paragraph>
-        <Separator />
+      <YStack>
+        <Paragraph>Manufacturer: {data?.manufacturer}</Paragraph>
+        {/* <Paragraph>ModelDetails: {data?.modelDetails}</Paragraph> */}
+        <Paragraph>ModelName: {data?.modelName}</Paragraph>
+        <Paragraph>implementation: {data?.implementation}</Paragraph>
       </YStack>
 
-      <H3 ta="center">Some Demos</H3>
-      <YStack p="$2">
-        <Paragraph>tRPC Query Demo</Paragraph>
-        {data?.map((entry) => (
-          <Paragraph opacity={0.5} key={entry.id}>
-            {entry.id}
-          </Paragraph>
-        ))}
-      </YStack>
-
-      <XStack space>
-        <Button {...userLinkProps} theme={"gray"}>
-          User Page(Routing)
-        </Button>
+      <XStack jc="center" ai="center" space>
+        <H5>Manual Mode:</H5>
+        <Switch
+          size="$4"
+          checked={manualState}
+          onCheckedChange={() => mutateManualState(!manualState)}
+        >
+          <Switch.Thumb animation="bouncy" />
+        </Switch>
       </XStack>
 
-      <SignedOut>
-        <XStack space ai="center">
-          <Button {...signInLinkProps} theme={"gray"}>
-            Sign In(Clerk)
-          </Button>
-          <Button {...signUpLinkProps} theme={"gray"}>
-            Sign Up(Clerk)
-          </Button>
-        </XStack>
-      </SignedOut>
-
-      <SignedIn>
+      <XStack ai="flex-end">
         <Button
-          onPress={() => {
-            signOut();
-          }}
-          theme={"red"}
+          disabled={!manualState}
+          h="$4"
+          onPress={() => mutateMove("rotate_counterclockwise")}
         >
-          Sign Out
+          Left
         </Button>
-      </SignedIn>
+        <YStack>
+          <Button
+            disabled={!manualState}
+            h="$4"
+            onPress={() => mutateMove("forward")}
+          >
+            Up
+          </Button>
+          <Button
+            disabled={!manualState}
+            h="$4"
+            onPress={() => mutateMove("backward")}
+          >
+            Down
+          </Button>
+        </YStack>
+        <Button
+          disabled={!manualState}
+          h="$4"
+          onPress={() => mutateMove("rotate_clockwise")}
+        >
+          Right
+        </Button>
+      </XStack>
     </YStack>
   );
 }
