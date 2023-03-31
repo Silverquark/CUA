@@ -8,79 +8,64 @@ import {
   XStack,
   YStack,
   Switch,
+  ScrollView,
   Image,
   H5,
 } from "@my/ui";
+
+import {
+  Play,
+  Pause,
+  StopCircle,
+  Home,
+  ArrowBigDown,
+  ArrowBigUp,
+  ArrowBigLeft,
+  ArrowBigRight,
+} from "@tamagui/lucide-icons";
+
+import { Map } from "./map";
 import React, { useEffect } from "react";
 import { useLink } from "solito/link";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
-
-type deviceInfo = {
-  manufacturer: string;
-  modelName: string;
-  modelDetails: {
-    supportedAttachments: ["dustbin"];
-  };
-  implementation: string;
-};
-
-const fetchUsers = async () => {
-  const res = await fetch("http://192.168.178.28/api/v2/robot");
-  return (await res.json()) as deviceInfo;
-};
-
-const fetchManualState = async () => {
-  const res = await fetch(
-    "http://192.168.178.28/api/v2/robot/capabilities/ManualControlCapability"
-  );
-  return (await res.json()).enabled as boolean;
-};
-
-const setManualMode = async (enable: boolean) => {
-  return await axios.put(
-    "http://192.168.178.28/api/v2/robot/capabilities/ManualControlCapability",
-    {
-      action: enable ? "enable" : "disable",
-    }
-  );
-};
-
-const move = async (
-  action:
-    | "forward"
-    | "backward"
-    | "rotate_counterclockwise"
-    | "rotate_clockwise"
-) => {
-  return await axios.put(
-    "http://192.168.178.28/api/v2/robot/capabilities/ManualControlCapability",
-    {
-      action: "move",
-      movementCommand: action,
-    }
-  );
-};
+import {
+  basicControl,
+  getDeviceInfo,
+  getDeviceStateAttributes,
+  getManualModeState,
+  getMap,
+  moveVaccum,
+  setManualModeState,
+} from "app/apicalls/apicalls";
+import { useDeviceState } from "app/apicalls/apitypes";
 
 export function HomeScreen() {
   const queryClient = useQueryClient();
 
-  const { data, error } = useQuery(["info"], fetchUsers);
+  const { data, error } = useQuery(["info"], getDeviceInfo);
+
+  const { statusState, chargingState } = useDeviceState();
 
   const { data: manualState, error: error2 } = useQuery(
     ["manualState"],
-    fetchManualState
+    getManualModeState
   );
 
+  const { data: mapState, error: error3 } = useQuery(["map"], getMap);
+
   const { mutate: mutateManualState } = useMutation({
-    mutationFn: setManualMode,
+    mutationFn: setManualModeState,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["manualState"] });
     },
   });
 
   const { mutate: mutateMove } = useMutation({
-    mutationFn: move,
+    mutationFn: moveVaccum,
+  });
+
+  const { mutate: mutateBasicControl } = useMutation({
+    mutationFn: basicControl,
   });
 
   /* 
@@ -96,13 +81,40 @@ export function HomeScreen() {
   }
 
   return (
-    <YStack f={1} jc="center" ai="center" p="$4" space>
-      <YStack>
+    <YStack bg={"$background"} f={1} jc="center" pt="$2" space>
+      {/* <YStack>
         <Paragraph>Manufacturer: {data?.manufacturer}</Paragraph>
-        {/* <Paragraph>ModelDetails: {data?.modelDetails}</Paragraph> */}
+        {/* <Paragraph>ModelDetails: {data?.modelDetails}</Paragraph>
         <Paragraph>ModelName: {data?.modelName}</Paragraph>
         <Paragraph>implementation: {data?.implementation}</Paragraph>
+      </YStack> */}
+      <YStack ai="center">
+        <Paragraph>
+          Status: {statusState.status} - {statusState.other}
+        </Paragraph>
+        <Paragraph>
+          Charging: {chargingState.chargingState} - {chargingState.chargeLevel}%
+        </Paragraph>
       </YStack>
+
+      <Separator />
+
+      <XStack jc="center" ai="center" space>
+        <Button size="$4" onClick={() => mutateBasicControl("start")}>
+          <Play />
+        </Button>
+        <Button size="$4" onClick={() => mutateBasicControl("pause")}>
+          <Pause />
+        </Button>
+        <Button size="$4" onClick={() => mutateBasicControl("stop")}>
+          <StopCircle />
+        </Button>
+        <Button size="$4" onClick={() => mutateBasicControl("home")}>
+          <Home />
+        </Button>
+      </XStack>
+
+      <Separator />
 
       <XStack jc="center" ai="center" space>
         <H5>Manual Mode:</H5>
@@ -114,29 +126,31 @@ export function HomeScreen() {
           <Switch.Thumb animation="bouncy" />
         </Switch>
       </XStack>
-
-      <XStack ai="flex-end">
+      <XStack ai="flex-end" jc="center">
         <Button
           disabled={!manualState}
           h="$4"
           onPress={() => mutateMove("rotate_counterclockwise")}
         >
-          Left
+          <ArrowBigLeft />
         </Button>
         <YStack>
           <Button
             disabled={!manualState}
             h="$4"
+            mb="$2"
+            mx="$2"
             onPress={() => mutateMove("forward")}
           >
-            Up
+            <ArrowBigUp />
           </Button>
           <Button
             disabled={!manualState}
             h="$4"
+            mx="$2"
             onPress={() => mutateMove("backward")}
           >
-            Down
+            <ArrowBigDown />
           </Button>
         </YStack>
         <Button
@@ -144,9 +158,12 @@ export function HomeScreen() {
           h="$4"
           onPress={() => mutateMove("rotate_clockwise")}
         >
-          Right
+          <ArrowBigRight />
         </Button>
       </XStack>
+      <Separator />
+
+      {/* <Map /> */}
     </YStack>
   );
 }

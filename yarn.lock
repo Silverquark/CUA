@@ -126,6 +126,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/helper-create-class-features-plugin@npm:^7.21.0":
+  version: 7.21.0
+  resolution: "@babel/helper-create-class-features-plugin@npm:7.21.0"
+  dependencies:
+    "@babel/helper-annotate-as-pure": ^7.18.6
+    "@babel/helper-environment-visitor": ^7.18.9
+    "@babel/helper-function-name": ^7.21.0
+    "@babel/helper-member-expression-to-functions": ^7.21.0
+    "@babel/helper-optimise-call-expression": ^7.18.6
+    "@babel/helper-replace-supers": ^7.20.7
+    "@babel/helper-skip-transparent-expression-wrappers": ^7.20.0
+    "@babel/helper-split-export-declaration": ^7.18.6
+  peerDependencies:
+    "@babel/core": ^7.0.0
+  checksum: 3e781d91d1056ea9b3a0395f3017492594a8b86899119b4a1645227c31727b8bec9bc8f6b72e86b1c5cf2dd6690893d2e8c5baff4974c429e616ead089552a21
+  languageName: node
+  linkType: hard
+
 "@babel/helper-create-regexp-features-plugin@npm:^7.18.6, @babel/helper-create-regexp-features-plugin@npm:^7.20.5":
   version: 7.20.5
   resolution: "@babel/helper-create-regexp-features-plugin@npm:7.20.5"
@@ -180,6 +198,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/helper-function-name@npm:^7.21.0":
+  version: 7.21.0
+  resolution: "@babel/helper-function-name@npm:7.21.0"
+  dependencies:
+    "@babel/template": ^7.20.7
+    "@babel/types": ^7.21.0
+  checksum: d63e63c3e0e3e8b3138fa47b0cd321148a300ef12b8ee951196994dcd2a492cc708aeda94c2c53759a5c9177fffaac0fd8778791286746f72a000976968daf4e
+  languageName: node
+  linkType: hard
+
 "@babel/helper-hoist-variables@npm:^7.18.6":
   version: 7.18.6
   resolution: "@babel/helper-hoist-variables@npm:7.18.6"
@@ -195,6 +223,15 @@ __metadata:
   dependencies:
     "@babel/types": ^7.20.7
   checksum: cec17aab7e964830b0146e575bd141127032319f26ed864a65b35abd75ad618d264d3e11449b9b4e29cfd95bb1a7e774afddd4884fdcc29c36ac9cbd2b66359f
+  languageName: node
+  linkType: hard
+
+"@babel/helper-member-expression-to-functions@npm:^7.21.0":
+  version: 7.21.0
+  resolution: "@babel/helper-member-expression-to-functions@npm:7.21.0"
+  dependencies:
+    "@babel/types": ^7.21.0
+  checksum: 49cbb865098195fe82ba22da3a8fe630cde30dcd8ebf8ad5f9a24a2b685150c6711419879cf9d99b94dad24cff9244d8c2a890d3d7ec75502cd01fe58cff5b5d
   languageName: node
   linkType: hard
 
@@ -312,6 +349,13 @@ __metadata:
   version: 7.18.6
   resolution: "@babel/helper-validator-option@npm:7.18.6"
   checksum: f9cc6eb7cc5d759c5abf006402180f8d5e4251e9198197428a97e05d65eb2f8ae5a0ce73b1dfd2d35af41d0eb780627a64edf98a4e71f064eeeacef8de58f2cf
+  languageName: node
+  linkType: hard
+
+"@babel/helper-validator-option@npm:^7.21.0":
+  version: 7.21.0
+  resolution: "@babel/helper-validator-option@npm:7.21.0"
+  checksum: 8ece4c78ffa5461fd8ab6b6e57cc51afad59df08192ed5d84b475af4a7193fc1cb794b59e3e7be64f3cdc4df7ac78bf3dbb20c129d7757ae078e6279ff8c2f07
   languageName: node
   linkType: hard
 
@@ -1073,6 +1117,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/plugin-transform-object-assign@npm:^7.16.7":
+  version: 7.18.6
+  resolution: "@babel/plugin-transform-object-assign@npm:7.18.6"
+  dependencies:
+    "@babel/helper-plugin-utils": ^7.18.6
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: a9738264cc996c54febafa0701c5a182d99afbddbfe9fbcc0b2536e3b2332b3318a8143aacd0368e31e18c24cd1b1980be7a3b0b2e5122efb520952d863a1203
+  languageName: node
+  linkType: hard
+
 "@babel/plugin-transform-object-super@npm:^7.0.0, @babel/plugin-transform-object-super@npm:^7.18.6":
   version: 7.18.6
   resolution: "@babel/plugin-transform-object-super@npm:7.18.6"
@@ -1286,6 +1341,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/plugin-transform-typescript@npm:^7.21.0":
+  version: 7.21.3
+  resolution: "@babel/plugin-transform-typescript@npm:7.21.3"
+  dependencies:
+    "@babel/helper-annotate-as-pure": ^7.18.6
+    "@babel/helper-create-class-features-plugin": ^7.21.0
+    "@babel/helper-plugin-utils": ^7.20.2
+    "@babel/plugin-syntax-typescript": ^7.20.0
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: c16fd577bf43f633deb76fca2a8527d8ae25968c8efdf327c1955472c3e0257e62992473d1ad7f9ee95379ce2404699af405ea03346055adadd3478ad0ecd117
+  languageName: node
+  linkType: hard
+
 "@babel/plugin-transform-unicode-escapes@npm:^7.18.10":
   version: 7.18.10
   resolution: "@babel/plugin-transform-unicode-escapes@npm:7.18.10"
@@ -1451,6 +1520,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/preset-typescript@npm:^7.16.7":
+  version: 7.21.0
+  resolution: "@babel/preset-typescript@npm:7.21.0"
+  dependencies:
+    "@babel/helper-plugin-utils": ^7.20.2
+    "@babel/helper-validator-option": ^7.21.0
+    "@babel/plugin-transform-typescript": ^7.21.0
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: 6e1f4d7294de2678fbaf36035e98847b2be432f40fe7a1204e5e45b8b05bcbe22902fe0d726e16af14de5bc08987fae28a7899871503fd661050d85f58755af6
+  languageName: node
+  linkType: hard
+
 "@babel/register@npm:^7.13.16":
   version: 7.18.9
   resolution: "@babel/register@npm:7.18.9"
@@ -1523,6 +1605,17 @@ __metadata:
     "@babel/helper-validator-identifier": ^7.19.1
     to-fast-properties: ^2.0.0
   checksum: b39af241f0b72bba67fd6d0d23914f6faec8c0eba8015c181cbd5ea92e59fc91a52a1ab490d3520c7dbd19ddb9ebb76c476308f6388764f16d8201e37fae6811
+  languageName: node
+  linkType: hard
+
+"@babel/types@npm:^7.21.0":
+  version: 7.21.3
+  resolution: "@babel/types@npm:7.21.3"
+  dependencies:
+    "@babel/helper-string-parser": ^7.19.4
+    "@babel/helper-validator-identifier": ^7.19.1
+    to-fast-properties: ^2.0.0
+  checksum: b750274718ba9cefd0b81836c464009bb6ba339fccce51b9baff497a0a2d96c044c61dc90cf203cec0adc770454b53a9681c3f7716883c802b85ab84c365ba35
   languageName: node
   linkType: hard
 
@@ -2925,6 +3018,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@shopify/react-native-skia@npm:0.1.157":
+  version: 0.1.157
+  resolution: "@shopify/react-native-skia@npm:0.1.157"
+  dependencies:
+    "@babel/plugin-proposal-nullish-coalescing-operator": ^7.18.6
+    canvaskit-wasm: 0.36.1
+    react-reconciler: ^0.27.0
+  peerDependencies:
+    react: ">=18.0"
+    react-native: ">=0.64"
+    react-native-reanimated: ">=2.0.0"
+  peerDependenciesMeta:
+    react-native-reanimated:
+      optional: true
+  bin:
+    setup-skia-web: scripts/setup-canvaskit.js
+  checksum: 90789bd76ce7c972f52f0552bc26a52906efae0f14ced70bb248e941f677ab46f4375e0705da8e761f45a24f5388116f667f4657f4ea0407ffe212a68d3228f2
+  languageName: node
+  linkType: hard
+
 "@sideway/address@npm:^4.1.3":
   version: 4.1.4
   resolution: "@sideway/address@npm:4.1.4"
@@ -4277,6 +4390,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/invariant@npm:^2.2.35":
+  version: 2.2.35
+  resolution: "@types/invariant@npm:2.2.35"
+  checksum: af1b624057c89789ed0917838fea3d42bb0c101cc22b829a24d8777c678be3bc79d6ae05992a13bdf607b94731262467a2e62a809602ea1f7eea5e8c2242660d
+  languageName: node
+  linkType: hard
+
 "@types/istanbul-lib-coverage@npm:*, @types/istanbul-lib-coverage@npm:^2.0.0":
   version: 2.0.4
   resolution: "@types/istanbul-lib-coverage@npm:2.0.4"
@@ -4571,6 +4691,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"abs-svg-path@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "abs-svg-path@npm:0.1.1"
+  checksum: af1a167c09e8bdb76c80adca7333f3d828e5b50e37b9702aa03675e271919e7b1eeaa35cce939970ecba14769953b7465ea34c2129ab683ddff9d973a07f164f
+  languageName: node
+  linkType: hard
+
 "absolute-path@npm:^0.0.0":
   version: 0.0.0
   resolution: "absolute-path@npm:0.0.0"
@@ -4745,6 +4872,7 @@ __metadata:
   resolution: "app@workspace:packages/app"
   dependencies:
     "@my/ui": "*"
+    "@shopify/react-native-skia": 0.1.157
     "@tamagui/animations-react-native": ^1.9.0
     "@tamagui/colors": ^1.9.0
     "@tamagui/font-inter": ^1.9.0
@@ -4755,7 +4883,11 @@ __metadata:
     "@trpc/next": 10.9.0
     "@trpc/react-query": 10.9.0
     axios: ^1.3.4
-    expo-linking: 3.3.0
+    expo-clipboard: ~4.0.1
+    expo-linking: ~3.3.1
+    react-native: 0.70.5
+    react-native-reanimated: ~2.12.0
+    react-native-redash: ^18.1.0
     solito: 2.1.3
   languageName: unknown
   linkType: soft
@@ -5624,6 +5756,13 @@ __metadata:
   version: 1.0.30001446
   resolution: "caniuse-lite@npm:1.0.30001446"
   checksum: b31a7e1837783afd7f3d4cb742689996c0a09d67394ddaa0609fd2bce00ceea65c448e25f91c03ba0f2d0e345b7e28fd5bc636c6760c949621a654c0effe74b5
+  languageName: node
+  linkType: hard
+
+"canvaskit-wasm@npm:0.36.1":
+  version: 0.36.1
+  resolution: "canvaskit-wasm@npm:0.36.1"
+  checksum: 7a90d1a641d9d9fc5a10fcc0ec64a73714247dfb5c41182644f5886b6e601f6e018282d2ac545acce66cd478b598640abdd58d8ae6db282d252d14d1d16eeb47
   languageName: node
   linkType: hard
 
@@ -7690,6 +7829,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"expo-clipboard@npm:~4.0.1":
+  version: 4.0.2
+  resolution: "expo-clipboard@npm:4.0.2"
+  peerDependencies:
+    expo: "*"
+  checksum: 46cd2067278fcf310a59a30680bd09b3ceb3a14333e5884eecd2d8f10c1623c312fb08301ad475e5e32b6def96c13a07d9e456535249f0ade97bb61c695d2dff
+  languageName: node
+  linkType: hard
+
 "expo-constants@npm:^14.0.2, expo-constants@npm:~14.0.0, expo-constants@npm:~14.0.2":
   version: 14.0.2
   resolution: "expo-constants@npm:14.0.2"
@@ -7833,6 +7981,19 @@ __metadata:
     qs: ^6.9.1
     url-parse: ^1.5.9
   checksum: ff4beff24a971fce24baa5423bab7ef0caabda64f87c9c55d32c409cd8f0e48ea46cc08ab1e54978e51476d7a6dadca05a5ba4ab74e982063d64ddfc8230cb5e
+  languageName: node
+  linkType: hard
+
+"expo-linking@npm:~3.3.1":
+  version: 3.3.1
+  resolution: "expo-linking@npm:3.3.1"
+  dependencies:
+    "@types/qs": ^6.5.3
+    expo-constants: ~14.0.0
+    invariant: ^2.2.4
+    qs: ^6.9.1
+    url-parse: ^1.5.9
+  checksum: 35353fc49e62064234adeae41230efce1a07c9742360defe25fd3b49b5a83238b8236f390dcd57051df037864b1c414704dd2e31dd6ad3c1a6d6406be0bc2848
   languageName: node
   linkType: hard
 
@@ -10393,6 +10554,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash.isequal@npm:^4.5.0":
+  version: 4.5.0
+  resolution: "lodash.isequal@npm:4.5.0"
+  checksum: da27515dc5230eb1140ba65ff8de3613649620e8656b19a6270afe4866b7bd461d9ba2ac8a48dcc57f7adac4ee80e1de9f965d89d4d81a0ad52bb3eec2609644
+  languageName: node
+  linkType: hard
+
 "lodash.merge@npm:^4.6.2":
   version: 4.6.2
   resolution: "lodash.merge@npm:4.6.2"
@@ -11656,6 +11824,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"normalize-svg-path@npm:^1.0.1":
+  version: 1.1.0
+  resolution: "normalize-svg-path@npm:1.1.0"
+  dependencies:
+    svg-arc-to-cubic-bezier: ^3.0.0
+  checksum: 106e108b2f99e9e222a1c6edfc859523c6c3c2b0a6ba64743ed08af120b23b9bc2c16682bc2ae043a24c011c34c8252376c68525cf11735c6f110b571740eb2e
+  languageName: node
+  linkType: hard
+
 "normalize-url@npm:^2.0.1":
   version: 2.0.1
   resolution: "normalize-url@npm:2.0.1"
@@ -12138,6 +12315,13 @@ __metadata:
   dependencies:
     pngjs: ^3.3.0
   checksum: 0c6b6c42c8830cd16f6f9e9aedafd53111c0ad2ff350ba79c629996887567558f5639ad0c95764f96f7acd1f9ff63d4ac73737e80efa3911a6de9839ee520c96
+  languageName: node
+  linkType: hard
+
+"parse-svg-path@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "parse-svg-path@npm:0.1.2"
+  checksum: bba7d4b4207fcc9eaf553b0d34db96ea8a1173635bc94528b5b66e1581902d4792d8d6229103764f01af4d839274234e97a4fa1c6f0fe7dcce195383848cec56
   languageName: node
   linkType: hard
 
@@ -12818,6 +13002,41 @@ prisma@latest:
   languageName: node
   linkType: hard
 
+"react-native-reanimated@npm:~2.12.0":
+  version: 2.12.0
+  resolution: "react-native-reanimated@npm:2.12.0"
+  dependencies:
+    "@babel/plugin-transform-object-assign": ^7.16.7
+    "@babel/preset-typescript": ^7.16.7
+    "@types/invariant": ^2.2.35
+    invariant: ^2.2.4
+    lodash.isequal: ^4.5.0
+    setimmediate: ^1.0.5
+    string-hash-64: ^1.0.3
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+    react: "*"
+    react-native: "*"
+  checksum: ef94d7888ad77859a9cf13156a88d6b7f2d96622bf8f7a19415fd3b7f2a588a1a78214711ce77259bfc45ceb5112c43cad8b96b034dc3ab749a1e0a835a923d0
+  languageName: node
+  linkType: hard
+
+"react-native-redash@npm:^18.1.0":
+  version: 18.1.0
+  resolution: "react-native-redash@npm:18.1.0"
+  dependencies:
+    abs-svg-path: ^0.1.1
+    normalize-svg-path: ^1.0.1
+    parse-svg-path: ^0.1.2
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+    react-native-gesture-handler: "*"
+    react-native-reanimated: ">=2.0.0"
+  checksum: edd81a6a6483131c196bd8b12a177674c8ccb1e28e43c62f20c44fce502445321adbe7e8e79e159d3a516948c1e985428ad416a34faae996e380aa0c122914b7
+  languageName: node
+  linkType: hard
+
 "react-native-safe-area-context@npm:4.4.1":
   version: 4.4.1
   resolution: "react-native-safe-area-context@npm:4.4.1"
@@ -12951,6 +13170,18 @@ prisma@latest:
   bin:
     react-native: cli.js
   checksum: 5aca6e1dba32c450078117c874e368efa7e291fbf37263a30935e395475343ad78f87d4e41d12742cc16d9fcaebd5175a631962fc5d620daa312079782d0a66c
+  languageName: node
+  linkType: hard
+
+"react-reconciler@npm:^0.27.0":
+  version: 0.27.0
+  resolution: "react-reconciler@npm:0.27.0"
+  dependencies:
+    loose-envify: ^1.1.0
+    scheduler: ^0.21.0
+  peerDependencies:
+    react: ^18.0.0
+  checksum: c2ae111f150c2a46970182df12ea8254719fdfec5e26574711b1838fc37863c63671460a351570fd359c088d891e7bb0ff89023c2f7c1582393b57dd517b92c2
   languageName: node
   linkType: hard
 
@@ -13629,6 +13860,15 @@ prisma@latest:
   languageName: node
   linkType: hard
 
+"scheduler@npm:^0.21.0":
+  version: 0.21.0
+  resolution: "scheduler@npm:0.21.0"
+  dependencies:
+    loose-envify: ^1.1.0
+  checksum: 4f8285076041ed2c81acdd1faa987f1655fdbd30554bc667c1ea64743fc74fb3a04ca7d27454b3d678735df5a230137a3b84756061b43dc5796e80701b66d124
+  languageName: node
+  linkType: hard
+
 "scheduler@npm:^0.22.0":
   version: 0.22.0
   resolution: "scheduler@npm:0.22.0"
@@ -14240,6 +14480,13 @@ prisma@latest:
   languageName: node
   linkType: hard
 
+"string-hash-64@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "string-hash-64@npm:1.0.3"
+  checksum: 79de8431b4fa3e85a2429cd52a34f7948221ff167b7a094e05d6bcfd0173474b232e0c9845c96f74b0d7b6b0c8bbe2c3532a4cacb21635293ef0cf3cc8e77f06
+  languageName: node
+  linkType: hard
+
 "string-width@npm:^1.0.2 || 2 || 3 || 4, string-width@npm:^4.1.0, string-width@npm:^4.2.0, string-width@npm:^4.2.3":
   version: 4.2.3
   resolution: "string-width@npm:4.2.3"
@@ -14487,6 +14734,13 @@ prisma@latest:
   version: 1.0.0
   resolution: "supports-preserve-symlinks-flag@npm:1.0.0"
   checksum: 53b1e247e68e05db7b3808b99b892bd36fb096e6fba213a06da7fab22045e97597db425c724f2bbd6c99a3c295e1e73f3e4de78592289f38431049e1277ca0ae
+  languageName: node
+  linkType: hard
+
+"svg-arc-to-cubic-bezier@npm:^3.0.0":
+  version: 3.2.0
+  resolution: "svg-arc-to-cubic-bezier@npm:3.2.0"
+  checksum: 55bf17756d558b9c0daddf636a6c9f2fe01fd5ac412229dfa2d4b29740226a82c980bcd3b5eb09ce311cbea282106c7549d97f8c8dba3a5a7b75f786bcb5e155
   languageName: node
   linkType: hard
 

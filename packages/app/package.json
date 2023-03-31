@@ -8,6 +8,7 @@
   ],
   "dependencies": {
     "@my/ui": "*",
+    "@shopify/react-native-skia": "0.1.157",
     "@tamagui/animations-react-native": "^1.9.0",
     "@tamagui/colors": "^1.9.0",
     "@tamagui/font-inter": "^1.9.0",
@@ -18,7 +19,11 @@
     "@trpc/next": "10.9.0",
     "@trpc/react-query": "10.9.0",
     "axios": "^1.3.4",
-    "expo-linking": "3.3.0",
+    "expo-clipboard": "~4.0.1",
+    "expo-linking": "~3.3.1",
+    "react-native": "0.70.5",
+    "react-native-reanimated": "~2.12.0",
+    "react-native-redash": "^18.1.0",
     "solito": "2.1.3"
   }
 }
