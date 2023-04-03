@@ -39,7 +39,12 @@ import {
 } from "app/apicalls/apicalls";
 import { useDeviceState } from "app/apicalls/apitypes";
 
+import { createParam } from "solito";
+
+const { useParam } = createParam();
+
 export function HomeScreen() {
+  const [robotIp, setRobotIp] = useParam("robotip");
   const queryClient = useQueryClient();
 
   const { data, error } = useQuery(["info"], getDeviceInfo);
@@ -89,6 +94,7 @@ export function HomeScreen() {
         <Paragraph>implementation: {data?.implementation}</Paragraph>
       </YStack> */}
       <YStack ai="center">
+        <Paragraph>Robot IP Param: {robotIp}</Paragraph>
         <Paragraph>
           Status: {statusState.status} - {statusState.other}
         </Paragraph>

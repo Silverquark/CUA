@@ -39,9 +39,9 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider value={DarkTheme}>
-      <Provider defaultTheme="dark">
-        <Tabs screenOptions={{}}></Tabs>
+    <ThemeProvider value={DefaultTheme}>
+      <Provider defaultTheme="light">
+        <Stack screenOptions={{}}></Stack>
       </Provider>
     </ThemeProvider>
   );
